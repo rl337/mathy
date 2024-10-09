@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "mathy"
+version = "0.1.0"
+description = "A novel model architecture to solve arithmetic problems"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/rl337/mathy"
+repository = "https://github.com/rl337/maty"
+keywords = ["arithmetic", "machine learning", "neural networks"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=7.5"  # For testing
+black = ">=23.7"  # Code formatting
+flake8 = ">=6.1"  # Linting
+mypy = "^1.7"  # Type checking
+
+[build-system]
+requires = ["poetry-core>=1.6.1"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "--strict-markers"
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.flake8]
+max-line-length = 88
+exclude = ["venv", ".venv", "__pycache__"]
+
+[tool.mypy]
+ignore_missing_imports = true

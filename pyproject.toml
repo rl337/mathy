@@ -11,6 +11,7 @@ keywords = ["arithmetic", "machine learning", "neural networks"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+torch = "==2.2.2"  # PyTorch
 
 [tool.poetry.dev-dependencies]
 pytest = ">=7.5"  # For testing

@@ -19,7 +19,7 @@ class Number:
             'solution': self.value
         })
 
-class NumberGenerator:
+class NaturalNumberGenerator:
     def __init__(self, seed: int):
         self.random = random.Random(seed)
 
@@ -82,7 +82,7 @@ class DataGen(mathy.command.Command):
 
     def execute(self):
         seen = set()
-        generator = NumberGenerator(self.args.seed)
+        generator = NaturalNumberGenerator(self.args.seed)
         with open(self.args.output_file, "w") as f:
             for _ in range(self.args.example_count):
                 while True:

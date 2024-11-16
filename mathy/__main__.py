@@ -70,7 +70,7 @@ def main():
     root_logger.handlers = [handler]
 
     command_classes = find_subclasses_in_module(mathy, mathy.command.Command)
-    command_dict = {cls.__name__: cls for cls in command_classes}
+    command_dict = {cls.__name__: cls for cls in command_classes if "not_a_command" not in cls.__dict__}
 
     loglevel_parser = argparse.ArgumentParser(add_help=False)
     loglevel_parser.add_argument("--loglevel", type=str, choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], default="INFO", help="output loglevel")

@@ -13,6 +13,9 @@ keywords = ["arithmetic", "machine learning", "neural networks"]
 python = "^3.10"
 torch = "==2.2.2"  # PyTorch
 numpy = "<2.0.0"
+num2words = "^0.5.13"
+babel = "^2.16.0"
+torchvision = "^0.17.0"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=7.5"  # For testing

@@ -3,6 +3,35 @@ import torch.nn as nn
 import torch.nn.functional as F
 from typing import Callable, List, Optional, Tuple
 
+class ClassicAutoencoder(nn.Module):
+    def __init__(self, latent_dim=32):
+        super(ClassicAutoencoder, self).__init__()
+        
+        self.encoder = nn.Sequential(
+            nn.Flatten(),                      
+            nn.Linear(784, 128),                
+            nn.ReLU(),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, latent_dim)           
+        )
+        
+        self.decoder = nn.Sequential(
+            nn.Linear(latent_dim, 64),
+            nn.ReLU(),
+            nn.Linear(64, 128),
+            nn.ReLU(),
+            nn.Linear(128, 784),                 
+            nn.Sigmoid(),                        
+            nn.Unflatten(1, (1, 28, 28))        
+        )
+
+    def forward(self, x):
+        encoded = self.encoder(x)
+        decoded = self.decoder(encoded)
+        return decoded
+
+
 class Autoencoder(nn.Module):
     activation: Callable[[torch.Tensor], torch.Tensor]
     output_activation: Optional[Callable[[torch.Tensor], torch.Tensor]]

@@ -19,10 +19,10 @@ class DataGen(mathy.command.Command):
             for _ in range(self.args.example_count):
                 while True:
                     number = generator.generate()
-                    if number.spelled_out not in seen:
+                    if number.rendered not in seen:
                         break
                 
-                seen.add(number.spelled_out)
+                seen.add(number.rendered)
                 f.write(number.as_training_example() + "\n")
 
     @classmethod

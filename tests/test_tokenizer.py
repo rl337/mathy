@@ -11,6 +11,14 @@ class TokenizerTest(unittest.TestCase):
         corpus = ["This is an example sentence", "Byte Pair Encoding is interesting", "Let's tokenize text"]
         self.tokenizer.train(corpus)
 
-        tokenized = self.tokenizer.tokenize("This is an example sentence")
-        self.assertEqual(tokenized, [1, 2, 3, 4, 5, 6, 4, 5, 6, 7, 8,6, 9, 10, 7, 11, 12, 13, 9, 6, 5, 9, 8, 14, 9, 8, 15, 9, 6, 16])
+        input_text = "This is an example sentence"
+        expected_text = "<s>This</w>is</w>an</w>example</w>sentence</w></s>" # text with special tokens added
+        tokenized = self.tokenizer.tokenize(input_text, 1024)
+
+        for _, token in enumerate(tokenized):
+            self.assertIn(token, self.tokenizer.id_to_token)
+
+        decoded_text = "".join([self.tokenizer.id_to_token[token] for token in tokenized])
+        assert decoded_text.startswith(expected_text)
+        assert decoded_text.endswith(self.tokenizer.padding_token)
   
